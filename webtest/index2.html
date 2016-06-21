@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>2、测试jsView的数据绑定</title>
+
+</head>
+
+<body>
+<h2>This is a heading</h2>
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.3333</p>
+<div id="newDiv">
+
+</div>
+<div id="newDiv2">
+</div>
+<button type="button" id="btn">Click me</button>
+
+<!--官方demo-->
+<script id="theTmpl" type="text/x-jsrender">
+        <b>{{:title}}</b>
+        <ul>
+          {{for members}}
+              <li >{{:name}} lives in <b>{{:address.city}}</b></li>
+          {{/for}}
+        </ul>
+</script>
+
+<script>
+    var data = {
+        "title": "The A team",
+        "members": [
+            {
+                "name": "Pete",
+                "address": {
+                    "city": "Seattle"
+                }
+            },
+            {
+                "name": "Heidi",
+                "address": {
+                    "city": "Sidney"
+                }
+            }
+        ]
+    };
+    var template = $.templates("#theTmpl");
+    var htmlOutput = template.render(data);
+    $("#newDiv").html(htmlOutput);
+</script>
+
+<script id="theTmpl2" type="text/x-jsrender">
+    <b>status={{:status}}</b>
+    <b>msg={{:msg}}}</b>
+    <ul id="ul1">
+        {{for data}}
+        <a href="/id={{:id}}">
+        <li id="{{:id}}">id={{:id}} title={{:title}} content={{:content}}</li>
+        </a>
+        {{/for}}
+    </ul>
+
+    <ul id="ul2">
+        {{for data}}
+        <li class="xx.css" id="{{:id}}">id={{:id}} title={{:title}} content={{:content}}</li>
+        {{/for}}
+    </ul>
+</script>
+
+<!--引入jquery.js-->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jsviews.js"></script>
+<script type="text/javascript">
+    var dataArray;
+    $(document).ready(function(){
+        alert("点击之后，修改p1");
+        document.getElementById("p1").innerHTML="修改了p1：javascript的DOM操作";
+        $("#btn").click(function(){
+            showMessage("信息提示：正在请求网络");
+            getJSON2();
+        });
+    });
+
+    function showMessage(msg){
+        alert(msg)
+    }
+
+
+    function getJSON2() {
+        //jQuery.post()方法
+        $.post("http://192.168.1.122/yne_siteM/index.php/Home/Interface/mess2","username=13760272643",
+                function(data,status) {
+                    alert("status="+status);
+                    //绑定UI
+                    var template = $.templates("#theTmpl2");
+                    var htmlOutput = template.render(data);
+                    $("#newDiv2").html(htmlOutput);
+
+                    //监听UI
+                    //选取id=ul2 的ul组件下的所有li
+                    $("ul#ul2 li").click(function() {
+                        alert("id="+$(this).attr("id"));
+                    });
+
+                    //监听所有id以a开头的li
+//                        $("li[id^='a']").click(function() {
+//                            alert("id="+$(this).attr("id"));
+//                        })
+
+                },
+                "json"
+        );
+    }
+
+</script>
+
+</body>
+</html>

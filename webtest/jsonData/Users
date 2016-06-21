@@ -1,0 +1,54 @@
+{
+  "status": "Y",
+  "msg": "成功",
+  "data": [
+    {
+      "id": "30",
+      "postid": "26",
+      "username": "",
+      "enname": "",
+      "sexnew": "0",
+      "portrait": "",
+      "time": "1466043693",
+      "title": "点赞了我的帖子",
+      "content": "赞了我的帖子：公积金",
+      "floor": "1"
+    },
+    {
+      "id": "31",
+      "postid": "26",
+      "username": "876D276C34C51EC381D98A4959F10EA3",
+      "enname": "っ 丶        LNR",
+      "sexnew": "0",
+      "portrait": "http://qzapp.qlogo.cn/qzapp/1105262825/876D276C34C51EC381D98A4959F10EA3/100",
+      "time": "1466043685",
+      "title": "啦啦啦",
+      "content": "评论了我的帖子：公积金",
+      "floor": "1"
+    },
+    {
+      "id": "29",
+      "postid": "24",
+      "username": "13760272643",
+      "enname": "",
+      "sexnew": "0",
+      "portrait": "",
+      "time": "1466043635",
+      "title": "点赞了我的评论",
+      "content": "赞了我的评论：回家开门",
+      "floor": "1"
+    },
+    {
+      "id": "28",
+      "postid": "26",
+      "username": "15072475892",
+      "enname": "Rick ",
+      "sexnew": "0",
+      "portrait": "uploads/image/portrait/1465783454.png",
+      "time": "1465988680",
+      "title": "Rick 点赞了我的帖子",
+      "content": "赞了我的帖子：公积金",
+      "floor": "0"
+    }
+  ]
+}

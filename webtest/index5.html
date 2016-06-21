@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试vue.js</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <!--双向绑定-->
+    <div id="app2">
+        <p>{{message}}</p>
+        <input v-model="message">
+    </div>
+
+    <!--渲染列表-->
+    <div id="app3">
+        <ul>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ul>
+    </div>
+
+    <!--处理用户输入-->
+    <div id="app4">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+    <div id="app5">
+        <input v-model="newTodo" v-on:keyup.enter="addTodo">
+        <ul>
+            <li v-for="todo in todos">
+                <span>{{ todo.text }}</span>
+                <button v-on:click="removeTodo($index)">X</button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="app6">
+        <ul>
+            <li v-for="todo in todos">
+                {{ todo.id }}  {{ todo.title }}
+            </li>
+        </ul>
+    </div>
+
+<!--引入vue.js框架-->
+<script type="text/javascript" src="vue.js"></script>
+<!--引入jQuery框架-->
+<script type="text/javascript" src="jquery.js"></script>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            message: 'Hello Vue.js!'
+        }
+    });
+
+    new Vue({
+        el:"#app2",
+        data:{
+            message: 'Hello Vue.js!'
+        }
+    });
+
+    new Vue({
+        el:"#app3",
+        data:{
+            todos:[
+                {
+                    text: 'Learn JavaScript',
+                    title:"111"
+
+                },
+                {
+                    text: 'Learn Vue.js',
+                    title:"222"
+                },
+                {
+                    text: 'Build Something Awesome',
+                    title:"333"
+                }
+            ]
+        }
+    });
+
+    new Vue({
+        el:"#app4",
+        data:{
+            message: 'Hello Vue.js'
+        },
+        methods:{
+            reverseMessage: function(){
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    });
+
+    new Vue({
+        el:'#app5',
+        data:{
+            newTodo:'',
+            todos:[
+                { text:'Add some todos'}
+            ]
+        },
+        methods:{
+            addTodo:function() {
+                var text = this.newTodo.trim();
+                if(text) {
+                    this.todos.push({text:text});
+                    this.newTodo = ''
+                }
+            },
+            removeTodo: function (index) {
+                this.todos.splice(index,1)
+            }
+
+        }
+    });
+
+     //使用jQuery的post方法获取数据
+    $(document).ready(
+            function getJSON(){
+//        $.post('http://192.168.1.122/yne_siteM/index.php/Home/Interface/mess2','username=13760272643',function(data,status){
+//            var todos = data.data;
+//            //绑定数据
+//            new Vue({
+//                el: "#app6",
+//                data: {
+//                    todos: todos
+//                }
+//            });
+//        },'json');
+
+        $.post('http://192.168.1.111/galaxysite/default.php/Home/Interface/banner','username=13760272643',function(data,status){
+
+            alert("status"+data.data[0].title);
+        },'json');
+    }
+    );
+
+</script>
+</body>
+</html>

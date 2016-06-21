@@ -1,0 +1,2 @@
+jquery.js =>jquery3.0.0.js
+angular.min.js =>1.5.7
